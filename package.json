@@ -1,0 +1,37 @@
+{
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "babel-cli": "*",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "*",
+    "babel-jest": "^23.6.0",
+    "cross-env": "*",
+    "eslint": "*",
+    "eslint-config-airbnb-base": "*",
+    "eslint-plugin-import": "*",
+    "eslint-plugin-jest": "*",
+    "jest": "*",
+    "jest-cli": "*"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production && babel src --out-dir dist --source-maps inline",
+    "eslint:init": "eslint --init",
+    "eslint": "eslint",
+    "test": "jest --coverage",
+    "test-watch": "jest --no-cache --watchAll"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "modulePathIgnorePatterns": [
+      "<rootDir>/__tests__/__fixtures__/"
+    ],
+    "watchPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/dist/"
+    ]
+  },
+  "dependencies": {
+    "lodash": "^4.17.11"
+  }
+}
