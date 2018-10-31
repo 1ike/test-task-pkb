@@ -1,8 +1,8 @@
 install:
 	npm i
 
-# start:
-# 	npm run babel-node -- src/bin/page-loader.js https://ru.hexlet.io/courses
+s:
+	npx babel-node -- src/index.js
 
 # d:
 # 	npm run babel-node -- --inspect-brk src/bin/page-loader.js https://ru.hexlet.io/courses
