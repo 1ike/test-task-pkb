@@ -1,4 +1,4 @@
-import { getHashTag, clear } from '../src/getHashTag';
+import { getHashTag, clearFromSpecChars } from '../src/getHashTag';
 
 describe('getHashTag', () => {
   test('is string', () => {
@@ -12,7 +12,7 @@ describe('getHashTag', () => {
   test('clear special chars', () => {
     const input = 'Пример НОВОГО   "хэштега"';
     const expected = 'Пример НОВОГО   хэштега';
-    expect(clear(input)).toBe(expected);
+    expect(clearFromSpecChars(input)).toBe(expected);
   });
   test('its alive', () => {
     const input = 'Пример НОВОГО   "хэштега"';

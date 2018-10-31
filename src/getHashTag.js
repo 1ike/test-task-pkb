@@ -18,7 +18,7 @@ const validate = (input, constraints) => constraints.every((constraint) => {
   return constraint.function(input, ...constraint.args);
 });
 
-export const clear = input => input.replace(/[^a-zA-Zа-яА-ЯЁё\d\s]/g, '');
+export const clearFromSpecChars = input => input.replace(/[^a-zA-Zа-яА-ЯЁё\d\s]/g, '');
 
 
 export const getHashTag = (input) => {
@@ -27,7 +27,7 @@ export const getHashTag = (input) => {
     [_.isString, isNotEmpty, { function: isNotTooLong, args: [1000] }],
   )) return false;
 
-  const words = _.words(clear(input).toLowerCase());
+  const words = _.words(clearFromSpecChars(input).toLowerCase());
 
   const hashName = words.map(word => _.capitalize(word)).join('');
 
