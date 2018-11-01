@@ -34,5 +34,5 @@ export const getHashTag = (input) => {
   return `#${hashName}`;
 };
 
-const res = getHashTag('Пример НОВОГО "хэштега"');
-console.log(res); // #ПримерНовогоХэштега
+/* const res = getHashTag('Пример НОВОГО "хэштега"');
+console.log(res); // #ПримерНовогоХэштега */
