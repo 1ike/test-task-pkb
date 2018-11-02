@@ -23,7 +23,7 @@
     "test-watch": "jest --no-cache --watchAll"
   },
   "jest": {
-    "testEnvironment": "node",
+    "testEnvironment": "jsdom",
     "modulePathIgnorePatterns": [
       "<rootDir>/__tests__/__fixtures__/"
     ],
