@@ -4,3 +4,5 @@ node_modules
 .vscode
 /coverage
 src/index.js
+src/selector.js
+__tests__/__fixtures__/selector.html
