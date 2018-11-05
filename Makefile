@@ -19,3 +19,6 @@ test:
 t:
 	npm run test-watch
 
+srv:
+	php -S localhost:80 -t ./
+

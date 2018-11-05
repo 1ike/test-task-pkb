@@ -25,14 +25,14 @@ describe('makeWave', () => {
 
   test('even length', () => {
     const text = 'abcd';
-    const expected = '<span style="font-size:10px">a</span><span style="font-size:15px">b</span><span style="font-size:20px">c</span><span style="font-size:15px">d</span>';
+    const expected = '<span style="font-size:10px">a</span><span style="font-size:15px">b</span><span style="font-size:15px">c</span><span style="font-size:10px">d</span>';
 
     testTransform(text, expected);
   });
 
   test('spaces', () => {
-    const text = ' ab cd ';
-    const expected = '<span style="font-size:10px"> </span><span style="font-size:10px">a</span><span style="font-size:15px">b</span><span style="font-size:15px"> </span><span style="font-size:15px">c</span><span style="font-size:10px">d</span><span style="font-size:10px"> </span>';
+    const text = ' ab   cd ';
+    const expected = '<span style="font-size:10px"> </span><span style="font-size:10px">a</span><span style="font-size:15px">b</span><span style="font-size:10px"> </span><span style="font-size:10px"> </span><span style="font-size:10px"> </span><span style="font-size:15px">c</span><span style="font-size:10px">d</span><span style="font-size:10px"> </span>';
 
     testTransform(text, expected);
   });

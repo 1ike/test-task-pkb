@@ -36,15 +36,17 @@ export const transformChar = (state, char, idx, chars) => {
   const {
     transformedChars,
     size,
+    startSize,
     step,
     measureUnit,
   } = state;
 
-  const newChar = wrapInSpan(char, `${size}${measureUnit}`);
+
+  const newChar = wrapInSpan(char, `${char === ' ' ? startSize : size}${measureUnit}`);
 
   let newSize = size;
-  if (char !== ' ' && chars[idx + 1] !== ' ') {
-    newSize = idx + 1 <= chars.length / 2 ? size + step : size - step;
+  if (chars[idx + 1] !== ' ') {
+    newSize = idx + 1 < chars.length / 2 ? size + step : size - step;
   }
 
   return {
@@ -60,6 +62,7 @@ export const transformTextToWave = (text, config) => {
   const initState = {
     transformedChars: [],
     size: config.startSize,
+    startSize: config.startSize,
     step: config.step,
     measureUnit: config.measureUnit,
   };
