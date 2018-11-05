@@ -11,6 +11,8 @@
  * результат поместите в тег .result:
  *  <div><input type="text"></div>
  *  <div class="result"></div>
+ *
+ *  Example of result: __tests__/__fixtures__/wave.png
  */
 
 /* const config = {
@@ -21,6 +23,7 @@
   measureUnit: 'px',
 }
  */
+
 const getSupportedEvent = (elem, eventsNames) => {
   for (let i = 0; i < eventsNames.length; i++) {
     if (`on${eventsNames[i].trim().toLowerCase()}` in elem) {
@@ -29,8 +32,9 @@ const getSupportedEvent = (elem, eventsNames) => {
   }
 };
 
-
 const wrapInSpan = (char, fontSize) => `<span style="font-size:${fontSize}">${char}</span>`;
+
+const dropUselessSpaces = (char, idx, chars) => !(char === ' ' && chars[idx - 1] === ' ');
 
 export const transformChar = (state, char, idx, chars) => {
   const {
@@ -42,12 +46,14 @@ export const transformChar = (state, char, idx, chars) => {
   } = state;
 
 
-  const newChar = wrapInSpan(char, `${char === ' ' ? startSize : size}${measureUnit}`);
-
   let newSize = size;
-  if (chars[idx + 1] !== ' ') {
-    newSize = idx + 1 < chars.length / 2 ? size + step : size - step;
+  if (idx && char !== ' ') {
+    newSize = idx < chars.length / 2 ? size + step : size - step;
   }
+
+
+  const fontSize = `${char === ' ' ? startSize : newSize}${measureUnit}`;
+  const newChar = wrapInSpan(char, fontSize);
 
   return {
     ...state,
@@ -67,7 +73,9 @@ export const transformTextToWave = (text, config) => {
     measureUnit: config.measureUnit,
   };
 
-  const { transformedChars } = chars.reduce(transformChar, initState);
+  const { transformedChars } = chars
+    .filter(dropUselessSpaces) // optionally, can be commented
+    .reduce(transformChar, initState);
 
   return transformedChars.join('');
 };
@@ -83,8 +91,7 @@ const makeWave = (config) => {
   const supportedEvent = getSupportedEvent(input, events);
 
   input.addEventListener(supportedEvent, () => {
-    const wave = transformTextToWave(input.value, config);
-    // or input.value.trim()
+    const wave = transformTextToWave(input.value.trim(), config);
     output.innerHTML = wave;
   });
 };
